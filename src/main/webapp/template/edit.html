@@ -1,0 +1,89 @@
+/&nbsp;<a ng-click="navCtrl.changeView('/items')" translate>itemsPage</a>&nbsp;/&nbsp;<span>edit</span>
+
+<!--Open item btn-->
+<span class="pull-right btn btn-xs btn-success c-edit-btn"
+      ng-click="navCtrl.changeView('/items/' + itemCtrl.item.itemId)"
+>
+     <span translate>openItem</span>
+     <span class="glyphicon glyphicon-file"></span>
+</span>
+
+<p>&nbsp;</p>
+
+<div class="alert alert-danger c-mw400"
+     ng-class="{hidden: navCtrl.itemCreationStatus != 1}"
+     role="alert">
+    {{'itemCreationError' | translate }}
+</div>
+
+<form class="simple-form c-mw400">
+
+    <div class="form-group">
+        <input type="text"
+               placeholder="Id"
+               class="form-control"
+               ng-model="itemCtrl.item.itemId"
+               ng-change="itemCtrl.getItem()"
+               readonly
+        >
+    </div>
+
+    <div class="form-group">
+        <input type="text"
+               id="name"
+               class="form-control"
+               placeholder="Name"
+               ng-model="itemCtrl.item.name"
+        >
+    </div>
+
+    <div class="form-group">
+        <label class="sr-only">Amount (in dollars)</label>
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input type="text"
+                   class="form-control"
+                   placeholder="Price"
+                   ng-model="itemCtrl.item.price"
+            >
+            <span class="input-group-addon">.00</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <textarea class="form-control"
+                  placeholder="Description"
+                  ng-model="itemCtrl.item.description"
+        >
+        </textarea>
+    </div>
+    <div class="form-group">
+        <textarea class="form-control"
+                  placeholder="Specs"
+                  ng-model="itemCtrl.item.specs"
+        >
+        </textarea>
+    </div>
+
+    <div class="form-group c-file-upload">
+        <input type="text"
+               ng-model="itemCtrl.item.imageId"
+               hidden
+        >
+        <img ng-src="{{itemCtrl.image.thumbnailsURL}}" src=""
+             ng-click="itemCtrl.showFullImage()"
+        />
+        <input type="file"
+               name="file"
+               accept="image/*,image/jpeg"
+               ngf-select="itemCtrl.onFileSelect($file)"
+        >
+    </div>
+    <br>
+
+    <input type="submit"
+           class="btn btn-default"
+           ng-click="itemCtrl.update()"
+           value="Save"
+    />
+</form>

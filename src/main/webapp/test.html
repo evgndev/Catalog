@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<form class="simple-form c-mw400"
+      enctype="multipart/form-data"
+
+      action="/items"
+      method="post"
+>
+    <div class="form-group">
+        <input type="text"
+               placeholder="Id"
+               class="form-control"
+        >
+    </div>
+
+    <div class="form-group">
+        <input type="text"
+               class="form-control"
+               placeholder="Name"
+               name="name"
+        >
+    </div>
+
+    <div class="form-group">
+        <input type="text"
+               class="form-control"
+               placeholder="Price"
+               name="price"
+        >
+        <!--<span class="input-group-addon">.00</span>-->
+    </div>
+
+    <div class="form-group">
+            <textarea class="form-control"
+                      placeholder="Description"
+                      name="description"
+            >
+            </textarea>
+    </div>
+
+    <div class="form-group">
+        <!--<label for="imageFile" translate>Image</label>-->
+        <input type="file" name="file" multiple accept="image/*,image/jpeg" ngf-select="onFileSelect($file)" >
+        <!--<p class="help-block">Image file</p>-->
+    </div>
+    <br>
+
+    <input type="submit"
+           class="btn btn-default"
+           value="add"
+    />
+</form>
+</body>
+</html>

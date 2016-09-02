@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="catalogApp">
+<head>
+    <title>My shop app</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/angular.js"></script>
+    <script src="js/angular-resource.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular-translate.js"></script>
+    <script src="js/angular-file-upload.js"></script>
+    <script src="js/angular-strap.js"></script>
+    <script src="js/angular-strap.tpl.js"></script>
+    <script src="js/angular-cookies.js"></script>
+    <script src="js/custom/main.js"></script>
+    <script src="js/custom/controller/NavigationController.js"></script>
+    <script src="js/custom/controller/ItemListController.js"></script>
+    <script src="js/custom/controller/ItemController.js"></script>
+    <script src="js/custom/localization/localization-ru.js"></script>
+    <script src="js/custom/localization/localization-en.js"></script>
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+<div id="c-background-layer"></div>
+<div class="c-content container" ng-cloak>
+    <div class="panel well-lg c-shadow-border" ng-controller="NavigationController as navCtrl">
+
+        <span class="c-pen-icon btn pull-right glyphicon glyphicon-pencil"
+              ng-click="navCtrl.changeMode()"
+              ng-class="{'btn-warning': navCtrl.editorMode}"
+        ></span>
+
+        <!--header-->
+        <h1 translate>headerTitle</h1>
+        <h3 translate>headerLabel</h3>
+
+        <br>
+
+        <!--tabs-->
+        <ul class="nav nav-pills">
+            <li ng-click="navCtrl.changeView('/home')"
+                ng-class="{active: currentView == '/home'}">
+                <a translate>homePage</a>
+            </li>
+            <li ng-click="navCtrl.changeView('/items')"
+                ng-class="{active: currentView.indexOf('item') !== -1 }">
+                <a translate>itemsPage</a>
+            </li>
+            <li ng-click="navCtrl.changeView('/contacts')"
+                ng-class="{active: currentView == '/contacts'}">
+                <a translate>contacts</a>
+            </li>
+        </ul>
+        <hr class="c-mt5">
+
+        <!--app body here    -->
+        <div ng-view/>
+    </div>
+</div>
+
+</body>
+</html>

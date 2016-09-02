@@ -1,0 +1,105 @@
+<div class="alert alert-success"
+     ng-class="{hidden: navCtrl.itemCreationStatus != 2}"
+>
+    {{'itemCreatesSuccess' | translate }}
+</div>
+
+<div class="alert alert-danger"
+     ng-class="{hidden: !pagination.wasError}"
+     role="alert"
+>
+    {{'tableGetItemsError' | translate }}
+</div>
+
+<div>
+    <span translate>itemTableHeader</span>
+    <span class="pull-right">
+        <span>Total: {{pagination.total}}&nbsp;</span>
+        <!--Item creation btn-->
+        <span class="btn btn-xs btn-success c-new-btn"
+              ng-click="navCtrl.changeView('/items/new')"
+              ng-class="{hidden: !navCtrl.editorMode}"
+        >
+            <span translate>createNew</span>
+            <span class="glyphicon glyphicon-plus"></span>
+        </span>
+
+    </span>
+</div>
+
+<div ng-hide="pagination.items">loading</div>
+<table ng-cloak class="table c-mb0">
+    <tr ng-repeat="item in pagination.items">
+        <td class="container c-items-item">
+            <div class="row">
+                <!--Item data-->
+                <div class="col-md-3" ng-click="navCtrl.changeView('/items/' + item.itemId)">
+                    <img ng-src="{{item.imageId ? '/images/' + item.imageId + '/thumbnails.jpg' : ''}}" src=""/>
+                </div>
+                <div class="col-md-8" ng-click="navCtrl.changeView('/items/' + item.itemId)">
+                    <div class="row c-nameAndPrice">
+                        <div class="col-md-10">
+                            <h4>
+                                {{item.name}}
+                            </h4>
+                        </div>
+                        <div class="col-md-2">
+                            <h4>
+                                {{item.price | currency}}
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row c-item-description">
+                        {{item.description}}
+                    </div>
+                </div>
+
+                <!--Edit item btn-->
+                <span class="pull-right btn btn-xs btn-success c-edit-btn"
+                      ng-click="navCtrl.changeView('/items/edit/' + item.itemId)"
+                      ng-class="{hidden: !navCtrl.editorMode}"
+                >
+                 <span translate>editItem</span>
+                 <span class="glyphicon glyphicon-edit"></span>
+                </span>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div ng-class="{hidden: pagination.items.length > 0}">
+    <hr class="c-mb5 c-mt0">
+    <div class="alert alert-info text-center"
+    >
+        {{'tableEmpty' | translate }}
+    </div>
+</div>
+
+<nav aria-label="pagination" class="text-center">
+
+    <ul class="pagination">
+        <li class="previous" ng-class="{disabled: pagination.page == 1}">
+            <a ng-click="itemListCtrl.previousPage()">
+                <span>&laquo;</span>
+                <span translate>paginationPrevious</span>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="pagination" ng-repeat="page in pagination.pagesForSelection">
+        <li ng-class="{active: page == pagination.page}">
+            <a ng-click="itemListCtrl.toPage(page)">
+                {{page}}
+            </a>
+        </li>
+    </ul>
+
+    <ul class="pagination">
+        <li class="next" ng-class="{disabled: pagination.page >= pagination.pageCount}">
+            <a ng-click="itemListCtrl.nextPage()">
+                <span translate>paginationNext</span>
+                <span>&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

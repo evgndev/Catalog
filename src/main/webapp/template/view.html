@@ -1,0 +1,40 @@
+/&nbsp;<a ng-click="navCtrl.changeView('/items')" translate>itemsPage</a>&nbsp;/&nbsp;<span translate>itemPage</span>
+
+<!--Edit item btn-->
+<span class="pull-right btn btn-xs btn-success c-edit-btn"
+      ng-click="navCtrl.changeView('/items/edit/' + itemCtrl.item.itemId)"
+      ng-class="{hidden: !navCtrl.editorMode}"
+>
+    <span translate>editItem</span>
+    <span class="glyphicon glyphicon-edit"></span>
+</span>
+
+<div>
+    <div>
+        <h1 ng-bind="itemCtrl.item.name"></h1>
+    </div>
+
+    <div class="container c-w100p">
+        <div class="row">
+            <div class="col-md-5">
+                <img ng-src="{{itemCtrl.image.thumbnailsURL}}" src=""
+                     ng-click="itemCtrl.showFullImage()"
+                     class="c-mw100p"
+                />
+            </div>
+            <div class="col-md-7">
+                <div class="row">
+                    <h3>{{itemCtrl.item.price | currency}}</h3>
+                </div>
+                <div class="row">
+                    <p ng-bind="itemCtrl.item.description"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <label translate>specs</label><label>:</label>
+        <p ng-bind="itemCtrl.item.specs"></p>
+    </div>
+</div>
