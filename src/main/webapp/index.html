@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="catalogApp">
 <head>
-    <title>My shop app</title>
+    <title>Bike catalog</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="js/angular.js"></script>
@@ -24,41 +24,42 @@
 </head>
 <body>
 <div id="c-background-layer"></div>
-<div class="c-content container" ng-cloak>
-    <div class="panel well-lg c-shadow-border" ng-controller="NavigationController as navCtrl">
+<div class="well-lg">
+    <div class="c-material-shadow c-no-border container panel c-p0" ng-cloak>
+        <div class="" ng-controller="NavigationController as navCtrl">
+            <div class="c-header-bg">
+                <span class="c-pen-icon btn pull-right glyphicon glyphicon-pencil"
+                      ng-click="navCtrl.changeMode()"
+                      ng-class="{'btn-success': navCtrl.editorMode}"
+                >
+                </span>
 
-        <span class="c-pen-icon btn pull-right glyphicon glyphicon-pencil"
-              ng-click="navCtrl.changeMode()"
-              ng-class="{'btn-warning': navCtrl.editorMode}"
-        ></span>
+                <!--header-->
+                <h1 class="c-header-text" translate>headerTitle</h1>
+                <h3 translate>headerLabel</h3>
+                <br>
 
-        <!--header-->
-        <h1 translate>headerTitle</h1>
-        <h3 translate>headerLabel</h3>
+                <!--tabs-->
+                <ul class="nav nav-pills">
+                    <li ng-click="navCtrl.changeView('/home')"
+                        ng-class="{active: currentView == '/home'}">
+                        <a translate>homePage</a>
+                    </li>
+                    <li ng-click="navCtrl.changeView('/items')"
+                        ng-class="{active: currentView.indexOf('item') !== -1 }">
+                        <a translate>itemsPage</a>
+                    </li>
+                    <li ng-click="navCtrl.changeView('/contacts')"
+                        ng-class="{active: currentView == '/contacts'}">
+                        <a translate>contacts</a>
+                    </li>
+                </ul>
+            </div>
 
-        <br>
-
-        <!--tabs-->
-        <ul class="nav nav-pills">
-            <li ng-click="navCtrl.changeView('/home')"
-                ng-class="{active: currentView == '/home'}">
-                <a translate>homePage</a>
-            </li>
-            <li ng-click="navCtrl.changeView('/items')"
-                ng-class="{active: currentView.indexOf('item') !== -1 }">
-                <a translate>itemsPage</a>
-            </li>
-            <li ng-click="navCtrl.changeView('/contacts')"
-                ng-class="{active: currentView == '/contacts'}">
-                <a translate>contacts</a>
-            </li>
-        </ul>
-        <hr class="c-mt5">
-
-        <!--app body here    -->
-        <div ng-view/>
+            <!--app body here    -->
+            <div class="well-lg" ng-view/>
+        </div>
     </div>
 </div>
-
 </body>
 </html>

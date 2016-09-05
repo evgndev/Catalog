@@ -1,16 +1,12 @@
-<div class="alert alert-success"
-     ng-class="{hidden: navCtrl.itemCreationStatus != 2}"
->
+<!--Alerts-->
+<div class="alert alert-success" ng-hide="navCtrl.itemCreationStatus != 2">
     {{'itemCreatesSuccess' | translate }}
 </div>
-
-<div class="alert alert-danger"
-     ng-class="{hidden: !pagination.wasError}"
-     role="alert"
->
+<div class="alert alert-danger" ng-hide="!pagination.wasError">
     {{'tableGetItemsError' | translate }}
 </div>
 
+<!--Table top bar-->
 <div>
     <span translate>itemTableHeader</span>
     <span class="pull-right">
@@ -27,7 +23,7 @@
     </span>
 </div>
 
-<div ng-hide="pagination.items">loading</div>
+<!--Table-->
 <table ng-cloak class="table c-mb0">
     <tr ng-repeat="item in pagination.items">
         <td class="container c-items-item">
@@ -44,7 +40,7 @@
                             </h4>
                         </div>
                         <div class="col-md-2">
-                            <h4>
+                            <h4 class="pull-right">
                                 {{item.price | currency}}
                             </h4>
                         </div>
@@ -67,16 +63,18 @@
     </tr>
 </table>
 
-<div ng-class="{hidden: pagination.items.length > 0}">
+<!--Empty table alert-->
+<div ng-hide="pagination.items.length > 0">
     <hr class="c-mb5 c-mt0">
-    <div class="alert alert-info text-center"
-    >
-        {{'tableEmpty' | translate }}
+    <div class="alert alert-info text-center">
+        <span ng-hide="!pagination.loadingAnimation" class="c-loading-animation"></span>
+        <span ng-hide="pagination.loadingAnimation" translate>tableEmpty</span>
     </div>
+
 </div>
 
+<!--Pagination bar-->
 <nav aria-label="pagination" class="text-center">
-
     <ul class="pagination">
         <li class="previous" ng-class="{disabled: pagination.page == 1}">
             <a ng-click="itemListCtrl.previousPage()">

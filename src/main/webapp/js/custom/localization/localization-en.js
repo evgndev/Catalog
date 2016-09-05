@@ -1,12 +1,12 @@
 catalogApp.config(function ($translateProvider) {
 
     var englishTranslationTable = {
-        headerTitle: 'Catalog',
-        headerLabel: "This is some catalog of something ...",
+        headerTitle: 'Bike catalog',
+        headerLabel: "",
         homePage: 'Home',
         itemsPage: 'Bikes',
         itemPage: 'view',
-        itemTableHeader:'Items table',
+        itemTableHeader:'Bikes',
         itemCreationError: 'Item creation error',
         itemCreatesSuccess: 'Item was create',
         id: 'ID',

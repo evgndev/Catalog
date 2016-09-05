@@ -1,4 +1,4 @@
-catalogApp.controller("NavigationController", function NavigationController($scope, $location, $cookieStore) {
+catalogApp.controller("NavigationController", function NavigationController($rootScope, $scope, $location, $cookieStore) {
     var ctrl = this;
 
     // 0 ok
@@ -18,4 +18,8 @@ catalogApp.controller("NavigationController", function NavigationController($sco
         ctrl.editorMode = !ctrl.editorMode
         $cookieStore.put('editorMode', ctrl.editorMode);
     };
+
+    $rootScope.$on("$routeChangeError", function () {
+        console.log("Failed to change routes");
+    });
 });

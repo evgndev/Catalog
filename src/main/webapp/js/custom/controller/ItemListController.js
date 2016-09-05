@@ -9,7 +9,8 @@ catalogApp.controller("ItemListController", function ItemListController($scope, 
             pagesForSelection: [1],
             sortProperty: 'itemId',
             sortDirection: 'asc',
-            items: {},
+            items: [],
+            loadingAnimation: true,
             wasError: false
         };
 
@@ -19,6 +20,8 @@ catalogApp.controller("ItemListController", function ItemListController($scope, 
      *  Refresh table
      */
     $scope.refresh = function () {
+
+        pagination.loadingAnimation = pagination.items.length == 0;
 
         var countSuccessCb = function (result) {
             var total = result.data;
@@ -38,9 +41,11 @@ catalogApp.controller("ItemListController", function ItemListController($scope, 
                     function (result) { // success callback
                         pagination.items = result;
                         pagination.wasError = false;
+                        pagination.loadingAnimation = false;
                     },
                     function (result) { // error callback
                         pagination.wasError = true;
+                        pagination.loadingAnimation = false;
                     }
                 );
             }
